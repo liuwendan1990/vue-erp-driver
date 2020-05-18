@@ -79,7 +79,7 @@ const http = request.request();
  * @param {string} params.password - 密码
  * @returns
  */
-export async function login(params) {
+export async function password_login(params) {
     //传入数据类型为FormData
     params = Qs.stringify({
         ...params
@@ -97,8 +97,30 @@ export async function login(params) {
  * @param {string} params.code - 验证码
  * @returns
  */
-export async function codelogin(params) {
-    return await http.post('/user/login', params);
+export async function login(params) {
+    //传入数据类型为FormData
+    params = Qs.stringify({
+        ...params
+    });
+    return await http.post('/erp-api/driver/login', params, {
+        'Content-Type': 'application/x-www-form-unlencoded'
+    });
+}
+
+/**
+ * 验证码登录
+ * @export
+ * @param {string} params.phone - 手机号
+ * @returns
+ */
+export async function getLoginCode(params) {
+    //传入数据类型为FormData
+    params = Qs.stringify({
+        ...params
+    });
+    return await http.post('/erp-api/driver/getLoginCode', params, {
+        'Content-Type': 'application/x-www-form-unlencoded'
+    });
 }
 
 /**
@@ -111,3 +133,4 @@ export async function codelogin(params) {
 // export async function userInfo(params) {
 //     return await http.post('/user/info', params);
 // }
+
