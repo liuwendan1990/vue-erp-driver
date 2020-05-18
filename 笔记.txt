@@ -1,0 +1,10 @@
+axios post传参格式默认为json
+
+vue router相关报错
+1、设置页面返回主页面调用路由跳转时：
+    this.$router.push({path:'/home'});
+会出现错误：
+    Uncaught (in promise) undefined
+解决方案：this.$router.push({path:'/'});因为没有设置'/home'的路由配置
+
+vue如何查看babel

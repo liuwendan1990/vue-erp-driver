@@ -1,0 +1,297 @@
+@charset "utf-8";
+
+/* CSS reset */
+html,
+body,
+form,
+fieldset,
+p,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: none;
+	text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+html {
+	font-family: \5FAE\8F6F\96C5\9ED1, "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	line-height: 22px;
+	color: #333;
+	background-color: #fff;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+button,
+p,
+blockquote,
+th,
+td {
+	margin: 0;
+	padding: 0;
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+caption,
+cite,
+em,
+strong,
+th {
+	font-style: normal;
+	font-weight: normal;
+}
+
+caption,
+th {
+	text-align: left;
+}
+
+fieldset,
+img {
+	border: 0;
+}
+
+img {
+	vertical-align: top;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+	display: block;
+}
+
+a {
+	background: transparent;
+	text-decoration: none;
+	color: #333;
+}
+
+a:active {
+	outline: 0;
+}
+
+b,
+strong {
+	font-weight: bold;
+}
+
+dfn {
+	font-style: normal;
+}
+
+img {
+	border: 0;
+}
+
+* {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: transparent;
+	/* For some Androids */
+	outline: none;
+}
+
+input,
+textarea,
+button {
+	margin: 0;
+	padding: 0;
+	font-family: \5FAE\8F6F\96C5\9ED1, "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;
+	border: 0;
+}
+
+a,
+button,
+input {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: transparent;
+}
+
+textarea {
+	resize: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td,
+th {
+	padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+form,
+blockquote {
+	margin: 0;
+	padding: 0;
+}
+
+ul,
+ol,
+li,
+dl,
+dd {
+	margin: 0;
+	padding: 0;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+	color: #ccc;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+	color: #ccc;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+	color: #ccc;
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="text"],
+button {
+	-webkit-appearance: none;
+}
+
+.clearfix {
+	*zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+	content: "";
+	line-height: 0;
+	display: table;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+/*选中颜色*/
+::selection {
+	background: #090053;
+	color: #fff;
+}
+
+::-moz-selection {
+	background: #090053;
+	color: #fff;
+}
+
+::-webkit-selection {
+	background: #090053;
+	color: #fff;
+}
+
+/*解决display:inline-block间距*/
+.displayinlineblock0 {
+	letter-spacing: -0.15rem;
+	font-size: 0;
+	vertical-align: top;
+}
+
+/*vertical-align:top后加的，为了取消垂直方向上的空隙*/
+/*display:inline-block两侧对齐*/
+.justify-fix {
+	width: 100%;
+	height: 0;
+	display: inline-block;
+	overflow: hidden;
+}
+
+/*居中容器*/
+.container {
+	width: 960px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.container320 {
+	width: 320px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.containerAll {
+	width: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
