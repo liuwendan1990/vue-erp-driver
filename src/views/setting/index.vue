@@ -26,11 +26,11 @@ export default {
       Toast('返回主页面');
       this.$router.push({path:'/'});
     },
-    //个人信息
+    //个人信息（可以用动态组件-状态的保持，来处理切换，而不是用路由————代表一种独立的页面）
     seeUserInfo(){},
     //密码设置
     onPasswordSet(){
-      
+
     },
     // 退出登录
     onSignOut(){
