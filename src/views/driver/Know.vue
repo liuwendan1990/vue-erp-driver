@@ -1,14 +1,15 @@
 <template>
   <div class="know">
     <van-nav-bar
+        fixed
         title="进厂须知"
         left-arrow
         @click-left="onClickLeft"/>
-    <!-- <div class="content"> -->
+    <div class="content">
         <div class="panel-card">
-            <h4>
+            <h3>
                 车辆及人员进入娲石水泥厂送提货安全须知
-            </h4>
+            </h3>
             <p>
                 &gt;所有提、送货车辆登记：司机需携带有效证件到门卫登记方能进入普通车登记需要：《机动车行驶证》《机动车驾驶证》；
             </p>
@@ -31,7 +32,7 @@
                 &gt;车辆及人员进入厂区后应听从安保部门指挥，不得在厂区内随意走动。
             </p>
         </div>
-    <!-- </div> -->
+    </div>
   </div>
 </template>
 
@@ -57,7 +58,6 @@ export default {
 
 <style scoped>
     p { margin: 12px 0;}
-    .know {background-color: #efeff4;height: 100%;}
     .know .panel-card {
         padding: 10px;
     }
@@ -72,5 +72,5 @@ export default {
         background-clip: padding-box;
         box-shadow: 0 1px 2px rgba(0,0,0,.3);
     }
-    .panel-card h4 {text-align: center;}
+    .panel-card h3 {text-align: center;font-weight: bold;}
 </style>
