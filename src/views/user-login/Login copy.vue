@@ -12,6 +12,7 @@
                 clearable
                 label="手机号"
                 placeholder="请输入手机号"
+                :rules="rules.phone"
             />
             <!-- 允许输入数字，调起带符号的纯数字键盘 -->
             <div class="code" v-show="flag">
@@ -22,12 +23,16 @@
                     clearable
                     label="短信验证码"
                     placeholder="请输入短信验证码"
-                    autocomplete="off"
+                    :rules="rules.code"
                 >
                     <template #button>
                         <van-button ref="countDown" native-type="button" size="small" type="info" @click="getCode">发送验证码</van-button>
                     </template>
                 </van-field>
+                <!-- <van-tag ref="countDown" type="primary" size="large" @click="getCode">
+                     获取验证码
+                </van-tag> -->
+               
             </div>
             <div v-show="!flag">
                 <van-field 
@@ -37,6 +42,7 @@
                     clearable
                     label="密码"
                     placeholder="请输入密码"
+                    :rules="rules.password"
                 />
             </div>
             <div id="loginSwitch" @click="onLoginSwitch">
@@ -97,47 +103,19 @@ export default {
     methods: {
         // 校验函数返回 true 表示校验通过，false 表示不通过
         validator(val) {
-            //验证手机号
-            if(this.ruleForm.phone==''){
-                Toast('手机号不能为空');
-                return false;
-            }
-            if(!/^0?(1)[0-9]{10}$/.test(this.ruleForm.phone)){
-                Toast('请输入正确格式的手机号');
-                return false;
-            }
-            if(val){//验证码方式登录
-                if(this.ruleForm.code==''){
-                    Toast('验证码不能为空');
-                    return false;
-                }
-                if(!/^\d{4}$/.test(this.ruleForm.code)){
-                    Toast('验证码请输入4位有效数字');
-                    return false;
-                }
-            }else{
-                if(this.ruleForm.password==''){
-                    Toast('密码不能为空');
-                    return false;
-                }
-                if(!/^\d{6}$/.test(this.ruleForm.password)){
-                    Toast('请输入6位数字的密码');
-                    return false;
-                }
-            }
-            return true;
+            return /^\d{4}$/.test(val);
         },
         //登录
-        onSubmit(e) {
+        onSubmit() {
             console.log('进来了------');
            
             //这里做一下格式校验
-            if(!this.validator(this.flag)){
-                return;
-            }
-            
             //在这里向后端发送登录手机号和密码
             if(this.flag){//验证码登录
+                if(!/^\d{4}$/.test(this.ruleForm.code)){
+                    Toast('请输入4位有效数字');
+                    return;
+                }
                 login({
                     phone:this.ruleForm.phone,
                     code:this.ruleForm.code
@@ -168,52 +146,52 @@ export default {
                     Toast(data.msg);
                 }
             })
-            e.preventDefault();
         },
         //登录方式切换
         onLoginSwitch(){
             this.flag=!this.flag;
         },
         //获取验证码
-        getCode(e){
-            //验证手机号
-            if(this.ruleForm.phone==''){
-                Toast('手机号不能为空');
-                return false;
-            }
-            if(!/^0?(1)[0-9]{10}$/.test(this.ruleForm.phone)){
-                Toast('请输入正确格式的手机号');
-                return false;
-            }
-            
-            getLoginCode({
-                phone:this.ruleForm.phone
-            }).then((data)=>{
-                if(data.code===0){
-                    Toast('发送成功');
-                    //获取验证码成功，开始倒计时，60s后允许重新获取验证码
-                    //倒计时时按钮不允许点击
-                    this.$refs.countDown.disabled = true;
-                    this.countDownFn();
+        getCode(){
+           
+            // if(validator){
+
+            // }
+            // this.$refs.ruleForm.validate(async (valid) => {
+
+                // if(!valid){return}
+
+                //判断是否输入正确格式的手机号码
+                // /^\d{4}$/.test(val)
+                if(this.ruleForm.phone==''){
+                    Toast('手机号不能为空');
+                    return ;
                 }
-                if(data.code===1){
-                    Toast(data.msg);
-                }
-            });
-            e.preventDefault();
-        },
-        //倒计时函数
-        countDownFn(){
-            this.loading();
-            this.timer = setInterval(() => {
-                if(this.timerNum === 0){
-                    //60s后允许重新获取验证码
-                    this.$refs.countDown.disabled = false;
-                    this.timer&&this.clearTimer(this.timer);//关闭定时器
-                }else{
-                    this.loading();
-                }
-            }, 1000);
+                // if(/^0?(1)[0-9]{10}$/.test(this.ruleForm.phone)==false){
+                //     Toast('请输入正确格式的手机号');
+                //     return;
+                // }
+                getLoginCode({
+                    phone:this.ruleForm.phone
+                }).then((data)=>{
+                    if(data.code===0){
+                        //获取验证码成功，开始倒计时，60s后允许重新获取验证码
+                        this.loading();
+                        this.timer = setInterval(() => {
+                            if(this.timerNum === 0){
+                                //60s后允许重新获取验证码
+                                this.timer&&this.clearTimer(this.timer);//关闭定时器
+                            }else{
+                                this.loading();
+                            }
+                        
+                        }, 1000);
+                    }
+                    if(data.code===1){
+                        Toast(data.msg);
+                    }
+                });
+            // });
         },
         loading() { // 启动定时器
             this.timerNum--; // 定时器减1
@@ -232,6 +210,8 @@ export default {
     beforeDestroy() {
         this.clearTimer();
     },
+        
+    
 }
 </script>
 
@@ -244,10 +224,11 @@ export default {
 }
 
 #loginSwitch {
-    width: 105px;
+    width: 70px;
     padding: 10px 16px;
 }
 #loginSwitch a{
     color: #1989fa;
+    font-size: 14px;
 }
 </style>

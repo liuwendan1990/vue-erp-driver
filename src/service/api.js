@@ -72,9 +72,26 @@ const request = new HttpRequest({
 const http = request.request();
 
 /**
+ * token是否失效校验
+ * @export
+ * @param {Object} params 
+ * @param {string} params.token - token
+ * @returns
+ */
+export async function tokenInvalid(params) {
+    //传入数据类型为FormData
+    params = Qs.stringify({
+        ...params
+    });
+    return await http.post('/erp-api/common/checkToken', params, {
+        'Content-Type': 'application/x-www-form-unlencoded'
+    });
+}
+
+/**
  * 密码登录
  * @export
- * @param {Object} params - 
+ * @param {Object} params 
  * @param {string} params.phone - 手机号
  * @param {string} params.password - 密码
  * @returns
@@ -92,7 +109,7 @@ export async function password_login(params) {
 /**
  * 验证码登录
  * @export
- * @param {Object} params - 
+ * @param {Object} params  
  * @param {string} params.phone - 手机号
  * @param {string} params.code - 验证码
  * @returns

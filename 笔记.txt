@@ -8,3 +8,5 @@ vue router相关报错
 解决方案：this.$router.push({path:'/'});因为没有设置'/home'的路由配置
 
 vue如何查看babel
+
+vant  Field组件怎样禁止自动填充
