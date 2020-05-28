@@ -9,10 +9,12 @@ import {tokenInvalid} from '@/service/api'
 //按需加载，访问路径的时候才会加载，不访问，不加载
 const Know = () => import('@/views/driver/Know')
 const Report = () => import('@/views/driver/Report')
+const ReportDetail = () => import('@/views/driver/ReportDetail')
 const BL = () => import('@/views/driver/BL')
 
 const Setting = () => import('@/views/setting/index')
 const Login = ()=>import('@/views/user-login/Login.vue')
+
 Vue.use(VueRouter)
 
   const routes = [
@@ -53,6 +55,15 @@ Vue.use(VueRouter)
     }
   },
   {
+    path: '/detail',
+    name: 'detail',
+    title: '详情页',
+    component: ReportDetail,
+    meta: {
+      login: true
+    }
+  },
+  {
     path: '/bl',
     name: 'bl',
     title:'进厂须知',
@@ -70,6 +81,7 @@ Vue.use(VueRouter)
       login: true
     }
   },
+  
   {
     path: '*',
     name: 'noFound',
@@ -98,7 +110,7 @@ router.beforeEach(async (to, from, next) => {
       //如果token失效，移除token
       // if(token){
         //判断token是否失效
-        tokenInvalid({token}).then((data)=>{
+        tokenInvalid().then((data)=>{
           if(data.code==999){
             next({
               name: 'login'

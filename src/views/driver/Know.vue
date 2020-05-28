@@ -37,14 +37,14 @@
 </template>
 
 <script>
-import { NavBar, Toast, Panel } from 'vant'
+import { NavBar, Toast } from 'vant'
 
 export default {
     name: 'Know',
     components: {
         [NavBar.name]: NavBar,
         [Toast.name]: Toast,
-        [Panel.name]: Panel,
+        // [Panel.name]: Panel,
     },
     methods: {
         onClickLeft() {
@@ -57,20 +57,11 @@ export default {
 </script>
 
 <style scoped>
-    p { margin: 12px 0;}
+    
     .know .panel-card {
         padding: 10px;
     }
-    .panel-card {
-        font-size: 14px;
-        line-height: 1.4;
-        position: relative;
-        overflow: hidden;
-        margin: 10px;
-        border-radius: 2px;
-        background-color: #fff;
-        background-clip: padding-box;
-        box-shadow: 0 1px 2px rgba(0,0,0,.3);
-    }
-    .panel-card h3 {text-align: center;font-weight: bold;}
+    
+     .know .panel-card h3 {text-align: center;font-weight: bold;}
+     .know .panel-card p { margin: 12px 0;}
 </style>
